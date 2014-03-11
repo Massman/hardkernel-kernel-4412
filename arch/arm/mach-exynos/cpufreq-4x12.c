@@ -68,27 +68,6 @@ static unsigned int exynos4x12_volt_table[CPUFREQ_LEVEL_END];
 		{L18, 200*1000},
 	{0, CPUFREQ_TABLE_END},
 	}; 
-#elif defined(CONFIG_BOARD_ODROID_X) || defined(CONFIG_BOARD_ODROID_Q) || defined(CONFIG_BOARD_ODROID_U)	
-	static struct cpufreq_frequency_table exynos4x12_freq_table[] = {
-		{L0, 1800*1000}, 
-		{L1, 1704*1000}, 
-		{L2, 1600*1000},
-                {L3, 1500*1000}, 
-		{L4, 1400*1000}, 
-		{L5, 1300*1000}, 
-		{L6, 1200*1000}, 
-		{L7, 1100*1000},
-                {L8, 1000*1000}, 
-		{L9, 900*1000}, 
-		{L10, 800*1000}, 
-		{L11, 700*1000}, 
-		{L12, 600*1000},
-                {L13, 500*1000}, 
-		{L14, 400*1000}, 
-		{L15, 300*1000}, 
-		{L16, 200*1000},
-                {0, CPUFREQ_TABLE_END},
-        }; 
 #endif
 
 static struct cpufreq_clkdiv exynos4x12_clkdiv_table[CPUFREQ_LEVEL_END];
@@ -99,13 +78,13 @@ static unsigned int clkdiv_cpu0_4212[CPUFREQ_LEVEL_END][8] = {
 	 * { DIVCORE, DIVCOREM0, DIVCOREM1, DIVPERIPH,
 	 *		DIVATB, DIVPCLK_DBG, DIVAPLL, DIVCORE2 }
 	 */
-#if defined(CONFIG_BOARD_ODROID_X2) || defined(CONFIG_BOARD_ODROID_Q2) || defined(CONFIG_BOARD_ODROID_U2)
+
 	/* 2000 Mhz Support */
 	{ 0, 3, 7, 0, 6, 1, 2, 0},
 	
 	/* 1920 Mhz Support */
 	{ 0, 3, 7, 0, 6, 1, 2, 0},
-#endif
+
 	/* 1800 Mhz Support */
 	{ 0, 3, 7, 0, 6, 1, 2, 0},
 
@@ -164,13 +143,13 @@ static unsigned int clkdiv_cpu0_4412[CPUFREQ_LEVEL_END][8] = {
 	 * { DIVCORE, DIVCOREM0, DIVCOREM1, DIVPERIPH,
 	 *		DIVATB, DIVPCLK_DBG, DIVAPLL, DIVCORE2 }
 	 */
-	#if defined(CONFIG_BOARD_ODROID_X2) || defined(CONFIG_BOARD_ODROID_Q2) || defined(CONFIG_BOARD_ODROID_U2)
+
 	/* 2000 Mhz Support */
 	{ 0, 3, 7, 0, 6, 1, 2, 0},
 	
 	/* 1920 Mhz Support */
 	{ 0, 3, 7, 0, 6, 1, 2, 0},
-	#endif
+
 	/* 1800 Mhz Support */
 	{ 0, 3, 7, 0, 6, 1, 2, 0},
 
@@ -227,13 +206,13 @@ static unsigned int clkdiv_cpu1_4212[CPUFREQ_LEVEL_END][2] = {
 	/* Clock divider value for following
 	 * { DIVCOPY, DIVHPM }
 	 */
-#if defined(CONFIG_BOARD_ODROID_X2) || defined(CONFIG_BOARD_ODROID_Q2) || defined(CONFIG_BOARD_ODROID_U2)
+
 	/* 2000Mhz */
 	{ 6, 0 },
 	
 	/* 1920Mhz */
 	{ 6, 0 },
-#endif
+
 	/* 1800Mhz */
 	{ 6, 0 },
 
@@ -290,13 +269,13 @@ static unsigned int clkdiv_cpu1_4412[CPUFREQ_LEVEL_END][3] = {
 	/* Clock divider value for following
 	 * { DIVCOPY, DIVHPM, DIVCORES }
 	 */
-#if defined(CONFIG_BOARD_ODROID_X2) || defined(CONFIG_BOARD_ODROID_Q2) || defined(CONFIG_BOARD_ODROID_U2)
+
 	/* 2000Mhz */
 	{ 6, 0, 7 },
 	
 	/* 1920Mhz */
 	{ 6, 0, 7 },
-#endif
+
 	/* 1800Mhz */
 	{ 6, 0, 7 },
 
@@ -351,13 +330,12 @@ static unsigned int clkdiv_cpu1_4412[CPUFREQ_LEVEL_END][3] = {
 
 static unsigned int exynos4x12_apll_pms_table[CPUFREQ_LEVEL_END] = {
 
-#if defined(CONFIG_BOARD_ODROID_X2) || defined(CONFIG_BOARD_ODROID_Q2) || defined(CONFIG_BOARD_ODROID_U2)
 	/* 2000MHz */
 	((250<<16)|(3<<8)|(0x0)),
 	
 	/* 1920Mhz */
 	((240<<16)|(3<<8)|(0x0)),
-#endif
+
 	/* 1800MHz */
 	((300<<16)|(4<<8)|(0x0)),
 
@@ -440,7 +418,6 @@ static const unsigned int asv_voltage_s[CPUFREQ_LEVEL_END] = {
 	1050000, 1025000, 1000000, 1000000, 1000000, 950000, 950000
 };
 
-#if defined(CONFIG_BOARD_ODROID_X2) || defined(CONFIG_BOARD_ODROID_Q2) || defined(CONFIG_BOARD_ODROID_U2)
 static const unsigned int asv_voltage_step_12_5[CPUFREQ_LEVEL_END][12] = {
 	/*   ASV0,    ASV1,    ASV2,    ASV3,	 ASV4,	  ASV5,	   ASV6,    ASV7,    ASV8,    ASV9,   ASV10,   ASV11 */
     { 1425000, 1425000, 1425000, 1425000, 1425000, 1425000, 1425000, 1425000, 1425000, 1425000, 1425000, 1425000 }, /* L0 */  
@@ -462,7 +439,7 @@ static const unsigned int asv_voltage_step_12_5[CPUFREQ_LEVEL_END][12] = {
     {  925000,  912500,  900000,  900000,  900000,  900000,  900000,  900000,  887500,  875000,  875000,  862500 }, /* L16 */
     {  925000,  912500,  900000,  900000,  900000,  900000,  900000,  900000,  887500,  875000,  875000,  862500 }, /* L17 */
 };
-#elif defined(CONFIG_BOARD_ODROID_X) || defined(CONFIG_BOARD_ODROID_Q) || defined(CONFIG_BOARD_ODROID_U)
+
 static const unsigned int asv_voltage_step_12_5[CPUFREQ_LEVEL_END][12] = {
     /*   ASV0,    ASV1,    ASV2,    ASV3,    ASV4,    ASV5,    ASV6,    ASV7,    ASV8,    ASV9,   ASV10,   ASV11 */
     { 1450000, 1450000, 1450000, 1450000, 1450000, 1450000, 1450000, 1450000, 1450000, 1387500, 1375000, 1362500 }, /* L2 */
@@ -482,7 +459,7 @@ static const unsigned int asv_voltage_step_12_5[CPUFREQ_LEVEL_END][12] = {
     {  925000,  912500,  900000,  900000,  900000,  900000,  900000,  900000,  887500,  875000,  875000,  862500 }, /* L16 */
     {  925000,  912500,  900000,  900000,  900000,  900000,  900000,  900000,  887500,  875000,  875000,  862500 }, /* L17 */
 };
-#endif
+
 static void set_clkdiv(unsigned int div_index)
 {
 	unsigned int tmp;
